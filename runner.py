@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
 
-import os, sys
+import os, sys, yaml
 
 # Local imports
-# From game/
-# from brawlhalla_bot_merrittlj.game import brawlhalla_bot
+from brawlhalla_bot_merrittlj.game import brawlhalla_bot
 
-# From util/
 from brawlhalla_bot_merrittlj.util import logging_utils
 from brawlhalla_bot_merrittlj.util import hotkey_utils
 
-# From config/
-from brawlhalla_bot_merrittlj.config import brawlhalla_config
-
 
 def main():
-    bot_inputs = [brawlhalla_config.INPUT_KEY_LEFT, brawlhalla_config.INPUT_KEY_RIGHT, brawlhalla_config.INPUT_KEY_AIM_UP, brawlhalla_config.INPUT_KEY_DOWN, brawlhalla_config.INPUT_KEY_JUMP, brawlhalla_config.INPUT_KEY_LIGHT_ATTACK, brawlhalla_config.INPUT_KEY_HEAVY_ATTACK, brawlhalla_config.INPUT_KEY_THROW, brawlhalla_config.INPUT_KEY_DODGE]
-    # bot = brawlhalla_bot.FFA_Bot(bot_inputs)
+    yaml_config = yaml.safe_load(open('config.yaml'))
+    yaml_inputs_data = yaml_config.get('input_keys')  # Raw input list taken from YAML that lists what input keys the program should use(ex: [input_key_left, input_key_right]) to only input "Move left" and "Move right" keys.
+    bot_input_key_dict = {}  # Dictionary translating actions to keys for consistent key actions(e.g. bot looks up key for "Light attack", instead of hard-coding specific keys).
+    for input in yaml_inputs_data:
+        bot_input_key_dict[input] = yaml_config.get(input)
 
-    bot_hotkey = hotkey_utils.Hotkey(brawlhalla_config.TOGGLE_KEY_COMBINATION, lambda : logging_utils.logpr("ONESHOT hotkey is activated."), hotkey_utils.Hotkey_Modes.ONESHOT)
+    bot = brawlhalla_bot.FFA_Bot(input_key_dict = bot_input_key_dict)
+
+    bot_hotkey = hotkey_utils.Hotkey(key_combination = yaml_config.get('toggle_key_combination'), activated_func = bot.program_toggle)
     bot_hotkey.run()
 
     
