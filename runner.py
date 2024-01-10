@@ -16,7 +16,7 @@ def main():
     for input in yaml_inputs_data:
         bot_input_key_dict[input] = yaml_config.get(input)
 
-    bot = brawlhalla_bot.FFA_Bot(input_key_dict = bot_input_key_dict)
+    bot = brawlhalla_bot.FFA_Bot(state = brawlhalla_bot.Legend_Selection, input_key_dict = bot_input_key_dict)
 
     bot_hotkey = hotkey_utils.Hotkey(key_combination = yaml_config.get('toggle_key_combination'), activated_func = bot.program_toggle)
     bot_hotkey.run()
