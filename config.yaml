@@ -12,4 +12,4 @@ input_key_heavy_attack: 't'         # Key for "Heavy attack" in Brawlhalla.
 input_key_throw: 's'                # Key for "Throw/pickup" in Brawlhalla.
 input_key_dodge: 'n'                # Key for "Dodge" in Brawlhalla.
 
-input_keys: [input_key_left, input_key_right, input_key_aim_up, input_key_down, input_key_jump, input_key_light_attack, input_key_heavy_attack, input_key_throw, input_key_dodge]  # List of the input keys to use in the bot.
+input_keys: [input_key_left, input_key_right, input_key_up, input_key_down, input_key_jump, input_key_light_attack, input_key_heavy_attack, input_key_throw, input_key_dodge]  # List of the input keys to use in the bot.
