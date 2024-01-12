@@ -1,0 +1,2 @@
+# brawlhalla-bot_runner
+This is simply the implementation/usage of the brawlhalla-bot Python package documented [here](https://github.com/merrittlj/brawlhalla-bot/). Please refer to that for a more detailed explanation.
