@@ -7,6 +7,7 @@ from brawlhalla_bot_merrittlj.util import logging_utils
 from brawlhalla_bot_merrittlj.util import hotkey_utils
 
 from brawlhalla_bot_merrittlj.game import custom_game_bot
+from brawlhalla_bot_merrittlj.game import ffa_bot
 from brawlhalla_bot_merrittlj.game import generic_states
 
 
@@ -17,7 +18,10 @@ def main():
     for input in yaml_inputs_data:
         bot_input_keys[input] = yaml_config.get(input)
 
-    bot = custom_game_bot.Custom_Game_Bot(state = generic_states.Legend_Selection, input_keys = bot_input_keys)
+    if yaml_config.get('ffa') == "False":
+        bot = custom_game_bot.Custom_Game_Bot(state = generic_states.Legend_Selection, input_keys = bot_input_keys)
+    else:
+        bot = ffa_bot.FFA_Bot(state = generic_states.Legend_Selection, input_keys = bot_input_keys)
 
     bot_hotkey = hotkey_utils.Hotkey(key_combination = yaml_config.get('toggle_key_combination'), activated_func = bot.program_toggle)
     bot_hotkey.run()

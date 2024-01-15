@@ -1,4 +1,5 @@
 ---
+ffa: "False"                        # Set to "False" for custom-game bot, set to "True" for FFA bot.
 toggle_key_combination: '<ctrl>+q'  # Hotkey for toggling the bot on and off.
 
 input_key_left: 'o'                 # Key for "Move left" in Brawlhalla.
